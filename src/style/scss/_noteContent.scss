@@ -1,0 +1,104 @@
+.note-content-container {
+    flex: 1 0 400px;
+    display: flex;
+    align-items: center;
+    flex-flow: column;
+    overflow-y: auto;
+
+    .actions {}
+
+    .note-content {
+        width: 85%;
+        flex: 1 0 400px;
+        display: flex;
+        flex-flow: column;
+
+        input {
+            width: 100%;
+            margin-top: 20px;
+            font-size: 90px;
+            border: none;
+            color: $prim;
+            font-weight: bold;
+        }
+
+        input:focus {
+            outline: none;
+        }
+
+        .toolbar {
+            width: 100%;
+            margin-top: 10px;
+            height: 60px;
+            border-top: 1px solid rgb(238, 238, 238);
+            border-bottom: 1px solid rgb(238, 238, 238);
+            background-color: white;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            position: relative;
+
+            .sub-container {
+                border-right: 1px solid rgb(185, 185, 185);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 75%;
+            }
+
+            .sub-container:last-child {
+                border: none;
+            }
+
+            .bar-icon {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 40px;
+                height: 80%;
+                margin: 3px;
+                font-size: 25px;
+                padding: 12px 0 12px 0;
+                border-radius: 2px;
+                box-sizing: border-box;
+                cursor: pointer;
+            }
+
+            .active {
+                background-color: $prim;
+                color: white;
+            }
+
+            .bar-icon:hover {
+                background-color: rgb(224, 224, 224);
+                color: black;
+            }
+
+        }
+
+    }
+}
+
+.no-notes-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: $prim;
+
+    .face {
+        font-size: 120px;
+    }
+
+    h1 {
+        font-size: 50px;
+    }
+}
+
+.text-editor {
+    flex: 1 0 400px;
+    width: 100%;
+    height: 100%;
+    border: none;
+}

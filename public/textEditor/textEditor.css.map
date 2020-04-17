@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,iBAAiB,CAAC;EACd,aAAa,EAAE,UAAU;EACzB,SAAS,EAAE,KAAK;CACnB",
+    "sources": [
+        "textEditor.scss"
+    ],
+    "names": [],
+    "file": "textEditor.css"
+}
