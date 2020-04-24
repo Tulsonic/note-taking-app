@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 
 const ToolBar = (props) => {
     const [localIframe, setLocalIframe] = useState(null);
@@ -22,6 +22,45 @@ const ToolBar = (props) => {
         localIframe.contentDocument.getElementsByTagName("body")[0].focus();
     };
 
+    const getActiveDiv = () => {
+        var sel = localIframe.contentDocument.getSelection();
+        var range = sel.getRangeAt(0);
+        var node = localIframe.contentDocument.createElement("span");
+        range.insertNode(node);
+        range = range.cloneRange();
+        range.selectNodeContents(node);
+        range.collapse(false);
+        sel.removeAllRanges();
+        sel.addRange(range);
+        var activeDiv = node.parentNode;
+        node.parentNode.removeChild(node);
+        return activeDiv;
+    };
+
+    const tabHandler = useCallback((e) => {
+        if (e.key === "Tab" && getActiveDiv().tagName === "LI") {
+            e.preventDefault();
+            execCmd("indent");
+        }
+        if (e.ctrlKey && e.key === "l") {
+            e.preventDefault();
+            execCmd("insertUnorderedList");
+        }
+        if (e.ctrlKey && e.key === "s") {
+            e.preventDefault();
+            saveHandler();
+        }
+    });
+
+    useEffect(() => {
+        localIframe &&
+            localIframe.contentDocument.addEventListener(
+                "keydown",
+                tabHandler,
+                false
+            );
+    }, [localIframe, tabHandler]);
+
     const insertCheckbox = () => {
         var sel, range;
         if (
@@ -32,6 +71,7 @@ const ToolBar = (props) => {
             range.collapse(true);
             var checkbox = localIframe.contentDocument.createElement("input");
             checkbox.type = "checkbox";
+            checkbox.checked = true;
             range.insertNode(checkbox);
 
             // Move the caret immediately after the inserted span
@@ -129,9 +169,11 @@ const ToolBar = (props) => {
             </div>
             {/* list buttons */}
             <div className="sub-container">
-                <div onClick={insertCheckbox} className="bar-icon">
-                    <div className="fa fa-check-square"></div>
-                </div>
+                {/*
+                    <div onClick={insertCheckbox} className="bar-icon">
+                        <div className="fa fa-check-square"></div>
+                    </div>
+                    */}
                 <div
                     onClick={() => execCmd("insertUnorderedList")}
                     className="bar-icon"
