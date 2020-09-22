@@ -6,10 +6,10 @@ import {
     deleteNotebookSignalReset,
     createNote,
     deleteItem,
-    changeNotebookName,
+    changeNotebookName
 } from "../../store/actions/contentActions";
 
-const CoverMenu = (props) => {
+const CoverMenu = props => {
     const {
         containsNotebook,
         addMenu,
@@ -17,7 +17,7 @@ const CoverMenu = (props) => {
         notebookName,
         deletingNotebookID,
         deletingNotebookName,
-        params,
+        params
     } = props;
 
     const [newItem, setNewItem] = useState(null);
@@ -38,26 +38,28 @@ const CoverMenu = (props) => {
         };
     }, []);
 
-    const onCoverClickHandler = (e) => {
+    const onCoverClickHandler = e => {
         if (e.target.id === "cover" || e.target.id === "exit") {
             resetState();
             props.closeMenu();
         }
     };
 
-    const onChangeHandler = (e) => {
+    const onChangeHandler = e => {
         setNewItem({ [e.target.id]: e.target.value });
         setValue(e.target.value);
     };
 
-    const onSubmitHandler = (e) => {
+    const onSubmitHandler = e => {
         e.preventDefault();
         if (addMenu) {
             if (containsNotebook) {
                 props.createNote(params.notebookID, newItem);
                 props.closeMenu();
             } else {
-                props.createNotebook(newItem);
+                props.createNotebook(newItem).then(resp => {
+                    props.createNote(resp.id, { name: "Untitled Note" });
+                });
                 props.closeMenu();
             }
         } else if (renameMenu) {
@@ -67,7 +69,7 @@ const CoverMenu = (props) => {
         props.closeMenu();
     };
 
-    const deleteNotebookHandler = (e) => {
+    const deleteNotebookHandler = e => {
         props.deleteItem(deletingNotebookID);
     };
 
@@ -139,19 +141,19 @@ const CoverMenu = (props) => {
     );
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     deletingNotebookID: state.content.deletingNotebookID,
-    deletingNotebookName: state.content.deletingNotebookName,
+    deletingNotebookName: state.content.deletingNotebookName
 });
 
-const mapDispatchToProps = (dispatch) => ({
-    createNotebook: (notebook) => dispatch(createNotebook(notebook)),
+const mapDispatchToProps = dispatch => ({
+    createNotebook: notebook => dispatch(createNotebook(notebook)),
     createNote: (notebookID, note) => dispatch(createNote(notebookID, note)),
     deleteItem: (notebookID, noteID) =>
         dispatch(deleteItem(notebookID, noteID)),
     deleteNotebookSignalReset: () => dispatch(deleteNotebookSignalReset()),
     changeNotebookName: (notebookID, name) =>
-        dispatch(changeNotebookName(notebookID, name)),
+        dispatch(changeNotebookName(notebookID, name))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CoverMenu);

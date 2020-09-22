@@ -1,19 +1,29 @@
 .note-content-container {
     flex: 1 0 400px;
-    display: flex;
-    align-items: center;
-    flex-flow: column;
     overflow-y: auto;
+    width: 100%;
 
-    .actions {}
+    .actions {
+    }
 
     .note-content {
-        width: 85%;
+        padding: 30px;
+        -webkit-box-shadow: 1px 0px 89px -31px rgba(36, 36, 36, 0.6);
+        -moz-box-shadow: 1px 0px 89px -31px rgba(36, 36, 36, 0.6);
+        box-shadow: 1px 0px 89px -31px rgba(36, 36, 36, 0.6);
+        width: 1000px;
+
+        @media (max-width: 2000px) {
+            width: 850px;
+        }
+
+        margin: 0 auto;
         flex: 1 0 400px;
         display: flex;
+        min-height: 100vh;
         flex-flow: column;
 
-        input {
+        .note-title {
             width: 100%;
             margin-top: 20px;
             font-size: 90px;
@@ -26,9 +36,17 @@
             outline: none;
         }
 
+        .text-editor-container {
+            flex: 1 0 400px;
+            display: flex;
+            flex-flow: column;
+            position: relative;
+        }
+
         .toolbar {
             width: 100%;
             margin-top: 10px;
+            margin-bottom: 20px;
             height: 60px;
             border-top: 1px solid rgb(238, 238, 238);
             border-bottom: 1px solid rgb(238, 238, 238);
@@ -73,32 +91,255 @@
                 background-color: rgb(224, 224, 224);
                 color: black;
             }
-
         }
-
-    }
-}
-
-.no-notes-container {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: $prim;
-
-    .face {
-        font-size: 120px;
-    }
-
-    h1 {
-        font-size: 50px;
     }
 }
 
 .text-editor {
     flex: 1 0 400px;
-    width: 100%;
-    height: 100%;
     border: none;
+}
+
+.linkContext {
+    border: 2px lightgrey solid;
+    border-radius: 4px;
+    align-items: center;
+    display: flex;
+    background-color: white;
+    height: 30px;
+    width: 600px;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    z-index: 2;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.24);
+
+    input[type="text"] {
+        height: 13px;
+        padding: 8px;
+        font-size: 16px;
+        color: blue;
+        border: none;
+    }
+
+    .name {
+        width: 0;
+        flex: 0 0 140px;
+    }
+
+    .link {
+        flex: 1 0 50px;
+    }
+
+    .close {
+        flex: 0 0 30px;
+        cursor: pointer;
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .button {
+            background-color: lightgrey;
+            color: white;
+            width: 20px;
+            height: 20px;
+            box-sizing: border-box;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+    .border-left {
+        height: 16px;
+        width: 2px;
+        background-color: lightgrey;
+    }
+}
+
+.note-link-context {
+    border: 2px lightgrey solid;
+    border-radius: 4px;
+    align-items: center;
+    justify-content: space-evenly;
+    display: flex;
+    background-color: white;
+    height: 30px;
+    width: 200px;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    z-index: 2;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.24);
+
+    .border-left {
+        height: 16px;
+        width: 2px;
+        background-color: lightgrey;
+    }
+
+    .change-link {
+        font-size: 16px;
+        padding: 3px;
+        cursor: pointer;
+    }
+
+    .change-link:hover {
+        background-color: lightgrey;
+    }
+
+    .close {
+        flex: 0 0 30px;
+        cursor: pointer;
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .button {
+            background-color: lightgrey;
+            color: white;
+            width: 20px;
+            height: 20px;
+            box-sizing: border-box;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+}
+
+.link-note-menu {
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(26, 26, 26, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .menu-container {
+        position: relative;
+        width: 500px;
+        height: 500px;
+        background-color: white;
+        box-sizing: border-box;
+        padding: 20px 30px;
+
+        .close {
+            font-size: 35px;
+            float: right;
+            cursor: pointer;
+            color: #bdbdbd;
+        }
+
+        h1 {
+            color: $prim;
+            font-size: 45px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            border: 2px solid $prim;
+            padding: 10px 10px;
+            color: black;
+            margin-bottom: 30px;
+            height: 35px;
+            font-size: 20px;
+            box-sizing: border-box;
+        }
+
+        .list-container {
+            overflow-y: auto;
+            height: 250px;
+            border: 1px solid #bdbdbd;
+
+            .note-item {
+                border-bottom: 1px solid #bdbdbd;
+                cursor: pointer;
+                margin: 0;
+                padding: 13px 0;
+                color: $prim;
+
+                h1 {
+                    color: inherit;
+                    font-weight: normal;
+                    font-size: 25px;
+                    margin: 0;
+                    margin-left: 10px;
+                }
+            }
+
+            .selected {
+                color: white;
+                background-color: $prim;
+            }
+        }
+
+        input[type="submit"] {
+            background-color: $prim;
+            border: none;
+            color: white;
+            font-size: 25px;
+            height: 40px;
+            border-radius: 3px;
+            margin-top: 10px;
+            cursor: pointer;
+            float: right;
+            width: 70px;
+        }
+    }
+}
+.create-link-container {
+    position: relative;
+    width: 500px;
+    height: 240px;
+    background-color: white;
+    box-sizing: border-box;
+    padding: 20px 30px;
+
+    .close {
+        font-size: 35px;
+        float: right;
+        cursor: pointer;
+        color: #bdbdbd;
+    }
+
+    h1 {
+        color: $prim;
+        font-size: 45px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    input[type="text"] {
+        width: 100%;
+        border: 2px solid $prim;
+        padding: 10px 10px;
+        color: black;
+        margin-bottom: 20px;
+        height: 35px;
+        font-size: 20px;
+        box-sizing: border-box;
+    }
+
+    input[type="submit"] {
+        background-color: $prim;
+        border: none;
+        color: white;
+        font-size: 25px;
+        height: 40px;
+        border-radius: 3px;
+        cursor: pointer;
+        float: right;
+        width: 100%;
+    }
 }

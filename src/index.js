@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./style/index.css";
+import "./style/css/index.css";
 import "./style/fonts/arkipelago/stylesheet.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
@@ -16,7 +16,7 @@ import firebase from "./config/fbConfig";
 import {
     ReactReduxFirebaseProvider,
     getFirebase,
-    isLoaded,
+    isLoaded
 } from "react-redux-firebase";
 import { createFirestoreInstance } from "redux-firestore";
 
@@ -27,18 +27,18 @@ const store = createStore(
 
 const rrfConfig = {
     userProfile: "users",
-    useFirestoreForProfile: true,
+    useFirestoreForProfile: true
 };
 
 const rrfProps = {
     firebase,
     config: rrfConfig,
     dispatch: store.dispatch,
-    createFirestoreInstance,
+    createFirestoreInstance
 };
 
 function AuthIsLoaded({ children }) {
-    const auth = useSelector((state) => state.firebase.auth);
+    const auth = useSelector(state => state.firebase.auth);
     if (!isLoaded(auth)) return null;
     return children;
 }

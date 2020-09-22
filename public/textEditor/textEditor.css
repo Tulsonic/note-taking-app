@@ -1,6 +1,67 @@
 .text-editor-html {
   overflow-wrap: break-word;
-  font-size: 25px;
-  max-width: 100vw;
+  width: 100%;
+  font-family: "Roboto";
+  font-size: 20px;
+  caret-color: black;
 }
+.text-editor-html img {
+  width: 100%;
+  height: auto;
+}
+.text-editor-html div[data-type=""] {
+  margin: 10px 0px;
+}
+.text-editor-html [data-type=title] {
+  margin: 10px 0px;
+}
+.text-editor-html ul,
+.text-editor-html ol {
+  margin: 2px;
+  padding-left: 25px;
+}
+.text-editor-html input[type=checkbox] {
+  cursor: pointer;
+  width: 15px;
+  height: 15px;
+  margin-right: 7px;
+}
+.text-editor-html [data-type=quote] {
+  box-sizing: "border-box";
+  padding: 25px 10px;
+  background-color: #f6f6f6;
+  border-left: 8px solid black;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+.text-editor-html [data-type=note] {
+  box-sizing: "border-box";
+  padding: 25px 10px;
+  background-color: #ffebf2;
+  border: 2px solid black;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+.text-editor-html .CodeMirror {
+  margin: 10px 0;
+  font-family: "Fira Code", monospace;
+  padding: 10px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  font-size: 18px;
+  height: auto;
+}
+
+.link {
+  color: blue;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.link-note {
+  color: #00dcff;
+}
+
 /*# sourceMappingURL=textEditor.css.map */

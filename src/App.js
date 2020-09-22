@@ -10,6 +10,7 @@ import LogIn from "./components/auth/LogIn";
 
 // HOC
 import { LoggedRouter } from "./HOC/routerHOC";
+import { Route } from "react-router-dom";
 import { NonLoggedRouter } from "./HOC/routerHOC";
 
 function App() {
@@ -17,7 +18,7 @@ function App() {
         <Router>
             <div className="App">
                 <Switch>
-                    <LoggedRouter exact path="/" component={Dashboard} />
+                    <Route exact path="/" component={Dashboard} />
                     <LoggedRouter
                         path="/notebook/:notebookID/note/:noteID"
                         component={NoteContent}

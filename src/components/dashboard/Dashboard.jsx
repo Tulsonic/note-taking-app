@@ -3,11 +3,13 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { firestoreConnect, isLoaded, isEmpty } from "react-redux-firebase";
 import { compose } from "redux";
+import { createNotebook, createNote } from "../../store/actions/contentActions";
 
 // Components
 import Favorites from "./Favorites";
 import Recents from "./Recents";
 import NoNotebooks from "./NoNotebooks";
+import Navbar from "../navigation/NavBar";
 
 const Dashboard = (props) => {
     const { notebooksFavorite, notebooksModifiedAt, auth } = props;
@@ -18,17 +20,26 @@ const Dashboard = (props) => {
         return null;
     }
 
+    if (isEmpty(notebooksModifiedAt) && isEmpty(notebooksFavorite)) {
+        props.createNotebook({ name: "Untitled Notebook" }).then((resp) => {
+            props.createNote(resp.id, { name: "Untitled Note" });
+        });
+    }
+
     const display =
-        isEmpty(notebooksModifiedAt) && isEmpty(notebooksFavorite) ? (
-            <NoNotebooks />
-        ) : (
+        isEmpty(notebooksModifiedAt) && isEmpty(notebooksFavorite) ? null : (
             <div>
                 <Favorites notebooks={notebooksFavorite} />
                 <Recents notebooks={notebooksModifiedAt} />
             </div>
         );
 
-    return <div className="page-componenet">{display}</div>;
+    return (
+        <div className="page-container">
+            <Navbar />
+            <div className="page-componenet">{display}</div>
+        </div>
+    );
 };
 
 const mapStateToProps = (state) => {
@@ -39,10 +50,13 @@ const mapStateToProps = (state) => {
     };
 };
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = (dispatch) => ({
+    createNotebook: (notebook) => dispatch(createNotebook(notebook)),
+    createNote: (notebookID, note) => dispatch(createNote(notebookID, note)),
+});
 
 export default compose(
-    connect(mapStateToProps),
+    connect(mapStateToProps, mapDispatchToProps),
     firestoreConnect((props) => {
         if (!props.auth.uid) {
             return [];

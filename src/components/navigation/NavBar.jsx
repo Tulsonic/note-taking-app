@@ -71,7 +71,7 @@ const NavBar = (props) => {
     };
 
     return (
-        <nav>
+        <nav style={props.position}>
             <CoverMenu
                 addMenu={addMenu}
                 renameMenu={renameMenu}

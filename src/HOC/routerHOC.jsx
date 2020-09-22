@@ -7,9 +7,9 @@ export const LoggedRouter = ({ component: Componenet, ...rest }) => {
     return (
         <Route
             {...rest}
-            component={props => (
+            component={(props) => (
                 <div className="page-container">
-                    <Navbar />
+                    <Navbar position={{ position: "absolute" }} />
                     <Componenet {...props} />
                 </div>
             )}
@@ -21,7 +21,7 @@ export const NonLoggedRouter = ({ component: Component, ...rest }) => {
     return (
         <Route
             {...rest}
-            component={props => (
+            component={(props) => (
                 <div className="auth-page-container">
                     <AuthPage />
                     <Component {...props} />

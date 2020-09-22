@@ -1,0 +1,29 @@
+@import "./_utilities.scss";
+@import "./_navbar.scss";
+@import "./_dashboard.scss";
+@import "./_auth.scss";
+@import "./_noteContent.scss";
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto", sans-serif;
+    overflow: hidden;
+}
+
+.page-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.page-componenet {
+    flex: 1 0 500px;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+::selection {
+    background: #ff7bb0;
+    color: white;
+}

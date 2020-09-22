@@ -1,9 +1,1 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,iBAAiB,CAAC;EACd,aAAa,EAAE,UAAU;EACzB,SAAS,EAAE,IAAI;EACf,SAAS,EAAE,KAAK;CACnB",
-    "sources": [
-        "textEditor.scss"
-    ],
-    "names": [],
-    "file": "textEditor.css"
-}
+{"version":3,"sourceRoot":"","sources":["textEditor.scss"],"names":[],"mappings":"AAEA;EACI;EACA;EACA;EACA;EACA;;AAEA;EACI;EACA;;AAGJ;EACI;;AAEJ;EACI;;AAGJ;AAAA;EAEI;EACA;;AAGJ;EACI;EACA;EACA;EACA;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;;AAGJ;EACI;EACA;EAEA;EACA;EACA;EACA;EACA;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;;;AAKR;EACI;EACA;EACA;;;AAGJ;EACI,OA1EG","file":"textEditor.css"}
