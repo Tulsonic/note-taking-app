@@ -71,34 +71,59 @@ const NavBar = (props) => {
     };
 
     return (
-        <nav style={props.position}>
-            <CoverMenu
-                addMenu={addMenu}
-                renameMenu={renameMenu}
-                closeMenu={closeMenu}
-                notebookName={notebookRename}
-                containsNotebook={containsNotebook}
-                params={props.match.params}
-            />
-            <div className="logo">
-                <Link to="/" className="logo-title">
-                    Write-it
-                </Link>
-            </div>
-            <div className="container">{navContent}</div>
-            <div>
-                <button
-                    onClick={onClickHandler}
-                    className="new-notebook"
-                    type="button"
-                >
-                    <span>Create new {caption}</span>
-                </button>
-                <div onClick={profileClickHandler}>
-                    <Profile profile={profile} />
+        <div className="nav-cont" style={props.position}>
+            <nav>
+                <CoverMenu
+                    addMenu={addMenu}
+                    renameMenu={renameMenu}
+                    closeMenu={closeMenu}
+                    notebookName={notebookRename}
+                    containsNotebook={containsNotebook}
+                    params={props.match.params}
+                />
+                <div className="close-nav">
+                    <div
+                        className="fas fa-times"
+                        onClick={() => {
+                            document.getElementsByTagName(
+                                "nav"
+                            )[0].style.width = "0px";
+                            document.getElementById("open-btn").style.width =
+                                "50px";
+                        }}
+                    ></div>
                 </div>
+                <div className="logo">
+                    <Link to="/" className="logo-title">
+                        Write-it
+                    </Link>
+                </div>
+                <div className="container">{navContent}</div>
+                <div>
+                    <button
+                        onClick={onClickHandler}
+                        className="new-notebook"
+                        type="button"
+                    >
+                        <span>Create new {caption}</span>
+                    </button>
+                    <div onClick={profileClickHandler}>
+                        <Profile profile={profile} />
+                    </div>
+                </div>
+            </nav>
+            <div
+                id="open-btn"
+                className="open-btn"
+                onClick={(el) => {
+                    document.getElementsByTagName("nav")[0].style.width =
+                        "400px";
+                    el.target.style.width = "0px";
+                }}
+            >
+                <div className="fas fa-angle-right"></div>
             </div>
-        </nav>
+        </div>
     );
 };
 
