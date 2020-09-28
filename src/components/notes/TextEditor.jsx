@@ -11,6 +11,7 @@ function TextEditor(props) {
             te.contentWindow.document.body.innerHTML = content;
             te.contentDocument.designMode = "on";
             te.contentWindow.document.body.spellcheck = false;
+            console.log(te);
             setTextEditor(te);
             te.contentDocument
                 .getElementsByTagName("HTML")[0]

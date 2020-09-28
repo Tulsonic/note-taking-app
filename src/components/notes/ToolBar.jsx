@@ -109,39 +109,6 @@ const ToolBar = (props) => {
             e.preventDefault();
             props.redo();
         }
-        if (e.key === "ArrowUp") {
-            let ps = getActiveDiv().previousSibling;
-            if (
-                ps &&
-                ps.getAttribute("contentEditable", "false") &&
-                (!ps.previousSibling ||
-                    ps.previousSibling.getAttribute("contentEditable", "false"))
-            ) {
-                e.preventDefault();
-                let nDiv = localIframe.contentDocument.createElement("div");
-                nDiv.innerHTML = "<br>";
-                localIframe.contentDocument.body.insertBefore(nDiv, ps);
-                moveToEnd(nDiv);
-            }
-        }
-        if (e.key === "ArrowDown") {
-            let ns = getActiveDiv().nextSibling;
-            if (
-                ns &&
-                ns.getAttribute("contentEditable", "false") &&
-                (!ns.nextSibling ||
-                    ns.nextSibling.getAttribute("contentEditable", "false"))
-            ) {
-                e.preventDefault();
-                let nDiv = localIframe.contentDocument.createElement("div");
-                nDiv.innerHTML = "<br>";
-                localIframe.contentDocument.body.insertBefore(
-                    nDiv,
-                    ns.nextSibling
-                );
-                moveToEnd(nDiv);
-            }
-        }
         if (
             e.ctrlKey &&
             e.key === "Enter" &&

@@ -10,7 +10,7 @@
         margin: 0;
         width: 0px;
         height: 100vh;
-        position: relative;
+        //position: relative;
         display: flex;
         flex-flow: column;
         background-color: #f6f6f6;
@@ -19,10 +19,6 @@
         overflow: hidden;
         transition: 0.5s;
         white-space: nowrap;
-
-        @media (max-width: 1950px) {
-            width: 330px;
-        }
     }
 
     .open-btn {
@@ -91,7 +87,7 @@
         flex-flow: column;
 
         .contain {
-            display: relative;
+            //display: relative;
             width: 100%;
             text-align: right;
 

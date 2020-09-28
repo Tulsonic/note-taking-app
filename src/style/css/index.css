@@ -10,7 +10,6 @@
   margin: 0;
   width: 0px;
   height: 100vh;
-  position: relative;
   display: flex;
   flex-flow: column;
   background-color: #f6f6f6;
@@ -18,11 +17,6 @@
   overflow: hidden;
   transition: 0.5s;
   white-space: nowrap;
-}
-@media (max-width: 1950px) {
-  .nav-cont nav {
-    width: 330px;
-  }
 }
 .nav-cont .open-btn {
   height: 100vh;
@@ -85,7 +79,6 @@
   flex-flow: column;
 }
 .cover form .contain {
-  display: relative;
   width: 100%;
   text-align: right;
 }

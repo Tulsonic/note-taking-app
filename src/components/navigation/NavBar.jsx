@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
@@ -18,7 +18,20 @@ const NavBar = (props) => {
     const [profileMenu, setProfileMenu] = useState(false);
     const [notebookRename, setNotebookRename] = useState(null);
 
-    const { profile } = props;
+    const { profile, page } = props;
+
+    useEffect(() => {
+        if (page === "dashboard") {
+            document.getElementById("nav-close").style.display = "none";
+            document.getElementById("open-btn").style.display = "none";
+            if (window.innerWidth > 1950) {
+                document.getElementsByTagName("nav")[0].style.width = "400px";
+            } else {
+                document.getElementsByTagName("nav")[0].style.width = "350px";
+            }
+        }
+        return () => {};
+    }, [page]);
 
     const containsNotebook = window.location.pathname.includes("/notebook")
         ? true
@@ -84,12 +97,15 @@ const NavBar = (props) => {
                 <div className="close-nav">
                     <div
                         className="fas fa-times"
-                        onClick={() => {
+                        style={{ display: "none" }}
+                        id="nav-close"
+                        onClick={(el) => {
                             document.getElementsByTagName(
                                 "nav"
                             )[0].style.width = "0px";
                             document.getElementById("open-btn").style.width =
                                 "50px";
+                            el.target.style.display = "none";
                         }}
                     ></div>
                 </div>
@@ -116,8 +132,15 @@ const NavBar = (props) => {
                 id="open-btn"
                 className="open-btn"
                 onClick={(el) => {
-                    document.getElementsByTagName("nav")[0].style.width =
-                        "400px";
+                    document.getElementById("nav-close").style.display =
+                        "block";
+                    if (window.innerWidth > 1950) {
+                        document.getElementsByTagName("nav")[0].style.width =
+                            "400px";
+                    } else {
+                        document.getElementsByTagName("nav")[0].style.width =
+                            "350px";
+                    }
                     el.target.style.width = "0px";
                 }}
             >

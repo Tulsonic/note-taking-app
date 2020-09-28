@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { firestoreConnect, isLoaded, isEmpty } from "react-redux-firebase";
@@ -36,7 +36,7 @@ const Dashboard = (props) => {
 
     return (
         <div className="page-container">
-            <Navbar />
+            <Navbar page="dashboard" />
             <div className="page-componenet">{display}</div>
         </div>
     );
